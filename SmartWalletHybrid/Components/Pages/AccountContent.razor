@@ -1,0 +1,34 @@
+﻿@page "/account-view/{accid}"
+
+
+<div class="top-fixed-bar">
+    <h3>@account.Name</h3>
+    <a href="/" style="height:30px;width:30px;display:flex;justify-content:center;align-items:center;background-color:#eeeeee;border-radius:15px;margin:8px">
+        <Icon Name="IconName.ArrowLeft" />
+    </a>
+</div>
+
+@if (transactions.Count == 0)
+{
+    <div style="display:flex;justify-content:center;align-items:center;width:100vw">
+        <img src="img/no-content.png" style="width:60vw" />
+    </div>
+}
+
+@foreach(var trans in transactions)
+{
+    <Card Style="margin:10px">
+        <CardBody>
+            <p>@trans.Title</p>
+            <p>@trans.Amount</p>
+            @if(trans.FromAccount == accountId)
+            {
+                <p>Expense</p>
+            }
+            else
+            {
+                <p>Income</p>
+            }
+        </CardBody>
+    </Card>
+}

@@ -1,0 +1,68 @@
+﻿@page "/"
+
+<div class="top-fixed-bar">
+    <h2>Smart Wallet</h2>
+    <div @onclick="()=>NavigateTransaction()" style="height:30px;width:30px;display:flex;justify-content:center;align-items:center;background-color:#eeeeee;border-radius:15px">
+        <Icon Name="IconName.Plus" />
+    </div>
+</div>
+<div class="mid-fixed-bar">
+    <p style="font-weight:bold;font-size:18px">Accounts</p>
+    <div @onclick="()=>NavigateAccount()" style="height:30px;width:30px;display:flex;justify-content:center;align-items:center;background-color:#eeeeee;border-radius:15px">
+        <Icon Name="IconName.Plus" />
+    </div>
+</div>
+<div class="mid-wrapping-grid">
+    @foreach (var account in accounts)
+    {
+        <a href="/account-view/@account.Id" style="text-decoration:none">
+            <Card Style="margin:8px;width:44vw">
+                <CardBody>
+                    <p>@account.Name</p>
+                </CardBody>
+            </Card>
+        </a>
+    }
+</div>
+<div class="mid-fixed-bar">
+    <p style="font-weight:bold;font-size:18px">Categories</p>
+    <div @onclick="()=>NavigateCategory()" style="height:30px;width:30px;display:flex;justify-content:center;align-items:center;background-color:#eeeeee;border-radius:15px">
+        <Icon Name="IconName.Plus" />
+    </div>
+</div>
+<div class="mid-wrapping-grid">
+    @foreach (var category in categories)
+    {
+        <a href="/account-view/@category.Id" style="text-decoration:none">
+            <Card Style="margin:8px;width:44vw">
+                <CardBody>
+                    <p>@category.Name</p>
+                </CardBody>
+            </Card>
+        </a>
+    }
+</div>
+<div class="mid-fixed-bar">
+    <p style="font-weight:bold;font-size:18px">Budgets</p>
+    <div @onclick="()=>NavigateBudget()" style="height:30px;width:30px;display:flex;justify-content:center;align-items:center;background-color:#eeeeee;border-radius:15px">
+        <Icon Name="IconName.Plus" />
+    </div>
+</div>
+@foreach(var budget in budgets)
+{
+    <a href="/view-budget/@budget.Id" style="text-decoration:none">
+        <Card Style="margin:8px">
+           <CardBody>
+                <p>@budget.Name</p>
+                <div style="display:flex;justify-content:space-between;align-items:center">
+                    <p>From : @budget.FromDate.ToShortDateString()</p>
+                    <p>Income : @budget.ExpectedIncome</p>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center">
+                    <p>To : @budget.ToDate.ToShortDateString()</p>
+                    <p>Expense : @budget.ExpectedExpense</p>
+                </div>
+           </CardBody>
+        </Card>
+    </a>
+}

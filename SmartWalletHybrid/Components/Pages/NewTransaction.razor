@@ -1,0 +1,57 @@
+﻿@page "/transaction/{plan}"
+
+<div class="top-fixed-bar">
+    <h3>New Transaction</h3>
+    <a href="/" style="height:30px;width:30px;display:flex;justify-content:center;align-items:center;background-color:#eeeeee;border-radius:15px;margin:8px">
+        <Icon Name="IconName.ArrowLeft" />
+    </a>
+</div>
+
+<div style="display:flex;justify-content:center;align-items:center;width:100vw">
+    <div>
+        @if( planData != null && planData.Id != 0)
+        {
+            <Card>
+                <CardBody>
+                    <p>@planData.Name</p>
+                    <p>@planData.Amount</p>
+                </CardBody>
+            </Card>
+        }
+        <div class="mb-3">
+            <label class="my-label">Title</label>
+            <InputText class="my-input" @bind-Value="@title" />
+        </div>
+        <div class="mb-3">
+            <label class="my-label">Date</label>
+            <InputDate class="my-input" TValue="DateTime" @bind-Value="@transDate" />
+        </div>
+        <div class="mb-3">
+            <label class="my-label">From Account</label>
+            <InputText class="my-input" @onclick="()=>OpenFromAccount()" @bind-Value="@fromAccount.Name" />
+        </div>
+        <div class="mb-3">
+            <label class="my-label">To Account</label>
+            <InputText class="my-input" @onclick="()=>OpenToAccount()" @bind-Value="@toAccount.Name" />
+        </div>
+        <div class="mb-3">
+            <label class="my-label">Amount</label>
+            <InputNumber class="my-input" TValue="decimal" @bind-Value="@transAmount" Step="0.01" />
+        </div>
+        <Button Color="ButtonColor.Primary" @onclick="onsaveTransactionClick">Save</Button>
+    </div>
+</div>
+
+<Modal @ref="accountModal" Title="Select Account / Category" >
+    <BodyTemplate>
+        @foreach(var accs in accounts)
+        {
+            <div @onclick="()=>SaveAccount(accs)" >
+                <p>@accs.Name</p>
+            </div>
+        }
+    </BodyTemplate>
+    <FooterTemplate>
+        <Button Color="ButtonColor.Primary" @onclick="OnHideModalClick" >Cancel</Button>
+    </FooterTemplate>
+</Modal>

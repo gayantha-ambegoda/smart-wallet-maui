@@ -1,0 +1,41 @@
+﻿@page "/view-budget/{budgetId}"
+@using SmartWalletHybrid.Models
+
+<div class="top-fixed-bar">
+    <h3>@budget.Name</h3>
+    <div style="display:flex;justify-content:center;align-items:center">
+        <a href="/" style="height:30px;width:30px;display:flex;justify-content:center;align-items:center;background-color:#eeeeee;border-radius:15px;margin:8px">
+            <Icon Name="IconName.ArrowLeft" />
+        </a>
+        <Button @onclick="()=>AddNewPlan()" Color="ButtonColor.Primary"><Icon Name="IconName.Plus" /></Button>
+    </div>
+</div>
+
+<Card Style="margin:8px">
+    <CardBody>
+        <p>From : @budget.FromDate</p>
+        <p>To : @budget.ToDate</p>
+        <p> Expenses : @budget.ExpectedExpense</p>
+        <p> Incomes : @budget.ExpectedIncome</p>
+        <p>@plans.Count plans are available under this budget</p>
+    </CardBody>
+</Card>
+
+@if(plans.Count == 0)
+{
+    <div style="display:flex;justify-content:center;align-items:center;width:100vw">
+        <img src="img/no-content.png" style="width:60vw" />
+    </div>
+}
+
+@foreach(Plan plan in plans)
+{
+    <a href="/transaction/@plan.Id" style="text-decoration:none;">
+        <Card Style="margin:8px;margin-left:16px;margin-right:16px">
+            <CardBody>
+                <p>@plan.Name</p>
+                <p>@plan.Amount</p>
+            </CardBody>
+        </Card>
+    </a>
+}

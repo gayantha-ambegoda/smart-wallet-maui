@@ -1,0 +1,38 @@
+﻿@page "/budget"
+
+<div class="top-fixed-bar">
+    <h3>New Budget</h3>
+    <a href="/" style="height:30px;width:30px;display:flex;justify-content:center;align-items:center;background-color:#eeeeee;border-radius:15px;margin:8px">
+        <Icon Name="IconName.ArrowLeft" />
+    </a>
+</div>
+<div style="display:flex;justify-content:center;align-items:center;width:100vw">
+    <div>
+        <div class="mb-3">
+            <label class="my-label">Name</label>
+            <InputText class="my-input"  @bind-Value="@budgetName" />
+        </div>
+        <div class="mb-3">
+            <label class="my-label">Description</label>
+            <InputText class="my-input"  @bind-Value="@budgetDescription" />
+        </div>
+        <div class="mb-3">
+            <label class="my-label">From Date</label>
+            <InputDate class="my-input" @bind-Value="@budgetFrom" />
+        </div>
+        <div class="mb-3">
+            <label class="my-label">To Date</label>
+            <InputDate class="my-input"  @bind-Value="@budgetTo" />
+        </div>
+        <div class="mb-3">
+            <label class="my-label">Income Amount</label>
+            <InputNumber class="my-input"  @bind-Value="@budgetIncome" />
+        </div>
+        <div class="mb-3">
+            <label class="my-label">Expense Amount</label>
+            <InputNumber class="my-input"  @bind-Value="@budgetExpense" />
+        </div>
+        <Button @onclick="()=>onSaveClick()" Color="ButtonColor.Primary"> Save </Button>
+        <Button @onclick="()=>onCancelClick()" Color="ButtonColor.Warning"> Cancel </Button>
+    </div>
+</div>

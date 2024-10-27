@@ -1,0 +1,24 @@
+﻿@page "/new-plan/{budget}"
+<div class="top-fixed-bar">
+    <h3>New Plan</h3>
+    <a href="/view-budget/@budget" style="height:30px;width:30px;display:flex;justify-content:center;align-items:center;background-color:#eeeeee;border-radius:15px;margin:8px">
+        <Icon Name="IconName.ArrowLeft" />
+    </a>
+</div>
+
+<div style="display:flex;justify-content:center;align-items:center;width:100vw">
+    <div>
+        <div class="mb-3">
+            <label class="my-label">Name</label>
+            <InputText class="my-input" @bind-Value="@Name" />
+        </div>
+        <div class="mb-3">
+            <label class="my-label">From Account</label>
+            <InputNumber class="my-input" @bind-Value="@amount" />
+        </div>
+        <div class="mb-3">
+            <Switch @bind-Value="isIncome" Label="Is Income ?" />
+        </div>
+        <Button Color="ButtonColor.Primary" @onclick="onSavePlanClick">Save</Button>
+    </div>
+</div>

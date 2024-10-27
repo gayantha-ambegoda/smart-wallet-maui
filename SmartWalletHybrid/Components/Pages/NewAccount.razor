@@ -1,0 +1,26 @@
+﻿@page "/account-new/{type}"
+
+<div class="top-fixed-bar">
+    @if (isCategory)
+    {
+        <h3>New Category</h3>
+    }
+    else
+    {
+        <h3>New Account</h3>
+    }
+
+    <a href="/" style="height:30px;width:30px;display:flex;justify-content:center;align-items:center;background-color:#eeeeee;border-radius:15px;margin:8px">
+        <Icon Name="IconName.ArrowLeft" />
+    </a>
+</div>
+<div style="display:flex;justify-content:center;align-items:center;width:100vw">
+    <div>
+        <div class="mb-3">
+            <label class="my-label">Name</label>
+            <InputText class="my-input" @bind-Value="@accountName" />
+        </div>
+        <Button @onclick="()=>onSaveClick()" Color="ButtonColor.Primary"> Save </Button>
+        <Button @onclick="()=>onCancelClick()" Color="ButtonColor.Warning"> Cancel </Button>
+    </div>
+</div>
