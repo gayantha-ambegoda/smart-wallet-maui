@@ -15,13 +15,7 @@
 <div class="mid-wrapping-grid">
     @foreach (var account in accounts)
     {
-        <a href="/account-view/@account.Id" style="text-decoration:none">
-            <Card Style="margin:8px;width:44vw">
-                <CardBody>
-                    <p>@account.Name</p>
-                </CardBody>
-            </Card>
-        </a>
+        <SmartWalletHybrid.Components.UIContent.AccountCard account="@account" />
     }
 </div>
 <div class="mid-fixed-bar">
@@ -33,13 +27,7 @@
 <div class="mid-wrapping-grid">
     @foreach (var category in categories)
     {
-        <a href="/account-view/@category.Id" style="text-decoration:none">
-            <Card Style="margin:8px;width:44vw">
-                <CardBody>
-                    <p>@category.Name</p>
-                </CardBody>
-            </Card>
-        </a>
+        <SmartWalletHybrid.Components.UIContent.AccountCard account="@category" />
     }
 </div>
 <div class="mid-fixed-bar">

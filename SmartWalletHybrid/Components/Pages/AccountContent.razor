@@ -17,18 +17,5 @@
 
 @foreach(var trans in transactions)
 {
-    <Card Style="margin:10px">
-        <CardBody>
-            <p>@trans.Title</p>
-            <p>@trans.Amount</p>
-            @if(trans.FromAccount == accountId)
-            {
-                <p>Expense</p>
-            }
-            else
-            {
-                <p>Income</p>
-            }
-        </CardBody>
-    </Card>
+    <SmartWalletHybrid.Components.UIContent.AccountTransaction transaction="trans" accountId="accountId" />
 }

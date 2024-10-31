@@ -4,7 +4,7 @@
 }
 
 *{
-    font-family:Roboto !important
+    font-family:Roboto !important;
 }
 
 .top-fixed-bar{
@@ -35,4 +35,10 @@
     padding:5px;
     border-radius:8px;
     border:1px solid #999999
+}
+.acc-trn-card{
+    border:1px solid #AFAFAF;
+    padding:8px;
+    margin:8px;
+    border-radius:10px
 }

@@ -1,0 +1,22 @@
+﻿@using SmartWalletHybrid.Models
+
+<a href="/account-view/@account.Id" style="text-decoration:none">
+    <Card Style="margin:8px;width:44vw">
+        <CardBody>
+            <p>@account.Name</p>
+            <p>@availableAmount</p>
+        </CardBody>
+    </Card>
+</a>
+
+@code {
+    [Parameter]
+    public Account account { get; set; } = new Account();
+
+    private decimal availableAmount = 0;
+
+    protected override async Task OnInitializedAsync()
+    {
+        availableAmount = await _dbService.GetAvailableAmountOfAccount(account.Id);
+    }
+}

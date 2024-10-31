@@ -1,0 +1,56 @@
+﻿@using SmartWalletHybrid.Models
+<div class="acc-trn-card">
+    <center>
+        <p style="font-weight:bold;font-size:18px;padding:0;margin:0;">@transaction.Title</p>
+    </center>
+    <p style="font-size:12px;padding:0;margin:0">@transaction.TransDate.ToShortDateString()</p>
+    <div style="display:flex;justify-content:space-between;align-items:center">
+        <p>@transaction.Amount.ToString("F2")</p>
+        @if (transaction.FromAccount == accountId)
+        {
+            <p style="font-size:14px;background-color:rgba(255,100,100,0.5);padding:0px;padding-left:5px;padding-right:5px;border-radius:5px;">Expense</p>
+        }
+        else
+        {
+            <p style="font-size:14px;background-color:rgba(100,255,100,0.5);padding:0px;padding-left:5px;padding-right:5px;border-radius:5px;">Income</p>
+        }
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center">
+        <p style="font-size:12px;padding:0;margin:0;font-style:italic">@otherAccount.Name</p>
+        @if (budget.Id > 0)
+        {
+            <p style="font-size:12px;padding:0;margin:0;font-weight:bold;">@budget.Name</p>
+        }
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public Transaction transaction { get; set; } = new();
+
+    [Parameter]
+    public int accountId { get; set; } = 0;
+
+
+    private Account otherAccount { get; set; } = new();
+    private Plan plan { get; set; } = new();
+    private Budget budget { get; set; } = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        if(transaction.FromAccount == accountId)
+        {
+            otherAccount = await _dbService.GetAccountById(transaction.ToAccount);
+        }
+        else
+        {
+            otherAccount = await _dbService.GetAccountById(transaction.FromAccount);
+        }
+
+        if(transaction.Plan > 0)
+        {
+            plan = await _dbService.GetPlanById(transaction.Plan);
+            budget = await _dbService.GetBudgetById(plan.BudgetId);
+        }
+    }
+}

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using BlazorBootstrap;
+using Microsoft.AspNetCore.Components;
 using SmartWalletHybrid.Models;
 using System;
 using System.Collections.Generic;

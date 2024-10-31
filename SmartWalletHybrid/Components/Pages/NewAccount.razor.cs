@@ -33,13 +33,16 @@ namespace SmartWalletHybrid.Components.Pages
 
         private async void onSaveClick()
         {
-            Account account = new Account();
-            account.Name = accountName;
-            account.CreateDate = DateTime.Now;
-            account.IsCategory = isCategory;
-            await _dbService.SaveAccount(account);
-            accountName = string.Empty;
-            StateHasChanged();
+            if (accountName != null &&  !accountName.Equals(""))
+            {
+                Account account = new Account();
+                account.Name = accountName;
+                account.CreateDate = DateTime.Now;
+                account.IsCategory = isCategory;
+                await _dbService.SaveAccount(account);
+                accountName = string.Empty;
+                StateHasChanged();
+            }
         }
 
         private void onCancelClick()

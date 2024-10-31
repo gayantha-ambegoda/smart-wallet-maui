@@ -21,5 +21,6 @@ namespace SmartWalletHybrid.Services
         Task<IList<Plan>> GetBudgetPlans(int budgetId);
         Task<Budget> GetBudgetById(int id);
         Task<Plan> GetPlanById(int id);
+        Task<decimal> GetAvailableAmountOfAccount(int account);
     }
 }

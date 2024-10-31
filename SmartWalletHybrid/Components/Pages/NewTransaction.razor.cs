@@ -34,6 +34,7 @@ namespace SmartWalletHybrid.Components.Pages
             {
                 pln = Int32.Parse(plan);
                 planData = await _dbService.GetPlanById(pln);
+                title = planData.Name;
             }
             StateHasChanged();
         }

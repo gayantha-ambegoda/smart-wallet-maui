@@ -48,7 +48,18 @@ namespace SmartWalletHybrid.Services
             if (_connection is not null)
             {
                 await _connection.InsertAsync(transaction);
+                if(transaction.Plan > 0)
+                {
+                    await UpdatePlanStatus(transaction.Plan);
+                }
             }
+        }
+
+        private async Task UpdatePlanStatus(int planid)
+        {
+            Plan plan = await _connection.Table<Plan>().FirstAsync(x => x.Id == planid);
+            plan.IsDone = true;
+            await _connection.UpdateAsync(plan);
         }
 
         public async Task SavePlan(Plan plan)
@@ -108,6 +119,24 @@ namespace SmartWalletHybrid.Services
             {
                 return new List<Budget>();
             }
+        }
+
+        public async Task<decimal> GetAvailableAmountOfAccount(int account)
+        {
+            IList<Transaction> transactions = await getRelatedTransactions(account);
+            decimal availableAmount = 0;
+            foreach(Transaction trans in transactions)
+            {
+                if(trans.FromAccount == account)
+                {
+                    availableAmount -= trans.Amount;
+                }
+                else
+                {
+                    availableAmount += trans.Amount;
+                }
+            }
+            return availableAmount;
         }
 
         public async Task<Account> GetAccountById(int id)
