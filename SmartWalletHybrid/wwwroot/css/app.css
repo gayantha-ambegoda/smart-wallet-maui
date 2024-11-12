@@ -42,3 +42,36 @@
     margin:8px;
     border-radius:10px
 }
+
+.wrapper{
+    width:600px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    margin:auto
+}
+.progress-bar{
+    width:100%;
+    height:20px;
+    border-radius:50px;
+    overflow:hidden;
+    border:1px solid deepskyblue;
+    padding:6px;
+}
+
+.progress{
+    height:100%;
+    background-color:#00a8ff;
+    border-radius:10px;
+    animation:animate 5s linear forward;
+}
+
+@keyframes animate{
+    0%{
+        width:0;
+    }
+    100%{
+        width:100%;
+    }
+}

@@ -29,10 +29,12 @@
         <div class="mb-3">
             <label class="my-label">From Account</label>
             <InputText class="my-input" @onclick="()=>OpenFromAccount()" @bind-Value="@fromAccount.Name" />
+            <Button Color="ButtonColor.Primary" @onclick="OpenFromAccount">From Accounts</Button>
         </div>
         <div class="mb-3">
             <label class="my-label">To Account</label>
             <InputText class="my-input" @onclick="()=>OpenToAccount()" @bind-Value="@toAccount.Name" />
+            <Button Color="ButtonColor.Primary" @onclick="OpenToAccount">To Accounts</Button>
         </div>
         <div class="mb-3">
             <label class="my-label">Amount</label>

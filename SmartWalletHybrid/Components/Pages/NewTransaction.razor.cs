@@ -30,7 +30,7 @@ namespace SmartWalletHybrid.Components.Pages
         {
             accounts = await _dbService.GetAllAccounts();
             var pln = 0;
-            if (plan != null)
+            if (plan != null && !plan.Equals("0"))
             {
                 pln = Int32.Parse(plan);
                 planData = await _dbService.GetPlanById(pln);

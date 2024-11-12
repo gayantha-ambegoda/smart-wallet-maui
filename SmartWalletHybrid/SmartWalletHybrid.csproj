@@ -39,6 +39,14 @@
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
     </PropertyGroup>
 
+	<PropertyGroup Condition="$(TargetFramework.Contains('-android')) and '$(Configuration)' == 'Release'">
+		<AndroidKeyStore>true</AndroidKeyStore>
+		<AndroidSigningKeyAlias>modern_wallet_alias</AndroidSigningKeyAlias>
+		<AndroidSigningKeyPass>mamaoyataadarei</AndroidSigningKeyPass>
+		<AndroidSigningKeyStore>../modern_smart_wallet.keystore</AndroidSigningKeyStore>
+		<AndroidSigningStorePass>mamaoyataadarei</AndroidSigningStorePass>
+	</PropertyGroup>
+
     <ItemGroup>
         <!-- App Icon -->
         <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
